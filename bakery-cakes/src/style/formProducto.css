@@ -1,0 +1,57 @@
+/* Estilo general del formulario */
+.product-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Agrupación de los elementos del formulario */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Estilo para las etiquetas y los campos del formulario */
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="number"],
+  .form-group input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Estilo para los checkboxes */
+  .checkbox-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  /* Estilo para el botón de envío */
+  .form-group button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .form-group button:hover {
+    background-color: #0056b3;
+  }
+  

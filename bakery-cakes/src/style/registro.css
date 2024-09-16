@@ -1,0 +1,118 @@
+body{
+  background-image: url("../img/merenge2.jpg");
+  background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+  background-color: #fff; /* Color de fondo por si la imagen no cubre todo el área */
+  
+}
+
+
+
+
+
+
+/* Contenedor para el formulario de registro */
+/* Contenedor del formulario de registro */
+.register-container {
+ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Altura completa del viewport */
+  /* background-color: #f0f0f0; Fondo gris claro */
+  
+}
+
+/* Estilo para el formulario */
+.register-form {
+  background-color:transparent; 
+  backdrop-filter: blur(8px);
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 2 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  width: 30%;
+  max-width: 400px; /* Ancho máximo para adaptabilidad */
+  max-height: 500px;
+}
+
+/* Estilo del título del formulario */
+.register-form h2 {
+  margin-bottom: 20px; /* Espacio debajo del título */
+  color: white; 
+  text-align: center; /* Centrar el título */
+}
+
+/* Estilo del grupo de elementos del formulario */
+.form-group {
+  margin-bottom: 20px; /* Espacio entre cada grupo de entrada */
+}
+
+/* Estilo de las etiquetas (labels) */
+.form-group label {
+  display: block; /* Asegura que la etiqueta tome todo el ancho */
+  margin-bottom: 8px; /* Espacio debajo de la etiqueta */
+  color:black; /* Texto gris medio */
+  font-weight: 500; /* Texto un poco más negrita */
+}
+
+/* Estilo de los campos de entrada (input) */
+.form-group input {
+  
+  width: 100%; /* Inputs de ancho completo */
+  padding: 10px; /* Espacio interior de los inputs */
+  border: 1px solid #ccc; /* Borde gris claro */
+  border-radius: 4px; /* Bordes ligeramente redondeados */
+  font-size: 16px; /* Aumentar tamaño de fuente para mejor legibilidad */
+  outline: none; /* Eliminar contorno */
+  transition: border-color 0.3s ease; /* Transición suave para el foco */
+}
+
+/* Efecto de foco en los campos de entrada */
+.form-group input:focus {
+  border-color: #007bff; /* Borde azul al enfocar */
+}
+
+/* Estilo del botón de registro */
+.btn-register {
+  width: 100%; /* Botón de ancho completo */
+  padding: 12px; /* Espacio interior del botón */
+  background-color: #007bff; /* Fondo azul */
+  color: #ffffff; /* Texto blanco */
+  border: none; /* Eliminar borde */
+  border-radius: 4px; /* Bordes redondeados */
+  font-size: 16px; /* Tamaño de fuente más grande */
+  cursor: pointer; /* Cursor de mano al pasar sobre el botón */
+  transition: background-color 0.3s ease; /* Transición suave para hover */
+}
+
+/* Efecto hover en el botón de registro */
+.btn-register:hover {
+  background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+}
+
+/* Estilo del botón de login */
+.btn-logi {
+  margin-top: 20px; /* Espacio encima del botón */
+  width: 20%; /* Botón de ancho completo */
+ position: absolute;
+ left: 800px;
+ top: 50px;
+  background-color: #28a745; /* Fondo verde */
+  color: #ffffff; /* Texto blanco */
+  border: none; /* Eliminar borde */
+  border-radius: 4px; /* Bordes redondeados */
+  font-size: 16px; /* Tamaño de fuente más grande */
+  cursor: pointer; /* Cursor de mano al pasar sobre el botón */
+  transition: background-color 0.3s ease; /* Transición suave para hover */
+}
+
+/* Efecto hover en el botón de login */
+.btn-logi:hover {
+  background-color: red; /* Verde más oscuro al pasar el mouse */
+}
+
+
+
+
+  

@@ -1,0 +1,91 @@
+/* 
+body{
+
+} */
+
+
+
+/* Estilos para el contenedor del login */
+.login-container {
+  background-image: url("../img/fondoLogin2.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+  }
+
+  
+  /* Estilos para el formulario de login */
+  .login-form {
+    background-color: transparent;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+  }
+  
+  .login-form h2 {
+    margin-bottom: 20px;
+    color: black;
+  }
+  
+  /* Estilos para los grupos de formulario */
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Estilos para el botón de login */
+  .btn-login {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .btn-login:hover {
+    background-color: #45a049;
+  }
+
+
+  /* Botón estilizado como enlace */
+.btn-link {
+  background: none;
+  color: #007bff;
+  border: none;
+  padding: 0;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.btn-link:hover {
+  color: #0056b3;
+}
+
