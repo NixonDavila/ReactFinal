@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {React, useState, useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import merryCake from "../img/merryCake.jpg"
+
 
 import getProducts from '../services/getProducts';
 
@@ -36,7 +36,7 @@ function Tarjeta() {
           {producto.size}
           </Card.Text>
         
-          <Button variant="primary">Go somewhere</Button>
+          <Button variant="primary">Go</Button>
         </Card.Body>
     </Card>)
 

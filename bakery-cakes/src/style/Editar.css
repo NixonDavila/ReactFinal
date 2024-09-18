@@ -1,0 +1,106 @@
+/* Contenedor principal del componente */
+.tarjeta-admin-container {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+/* Estilo para el formulario de edición de productos */
+.producto-form {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para los grupos de formulario */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Etiquetas del formulario */
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Estilo para los campos de entrada */
+.producto-form input[type="text"],
+.producto-form input[type="number"],
+.producto-form input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Estilo para los campos de entrada tipo checkbox */
+.checkbox-group label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+/* Estilo para los botones */
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.button-group .btn {
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Estilo para los botones primarios */
+.button-group .btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+}
+
+.button-group .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para los botones secundarios */
+.button-group .btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+}
+
+.button-group .btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* Estilo para el título de especificaciones */
+.producto-form h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+/* Estilo para la lista de productos */
+.productos-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Estilo para cada tarjeta de producto */
+.producto-card {
+  width: 18rem;
+  margin-bottom: 20px;
+}

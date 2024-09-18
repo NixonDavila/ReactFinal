@@ -1,6 +1,9 @@
-async function deleteTarea(id) {
+
+
+
+export default async function deleteProduct(productId) {
     try {
-        const response = await fetch(`http://localhost:3001/tareas/${id}`, {
+        const response = await fetch(`http://localhost:3001/products/${productId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -8,14 +11,16 @@ async function deleteTarea(id) {
         });
 
         if (!response.ok) {
-            throw new Error(`Error deleting tarea with id ${id}`);
+            throw new Error(`Error eliminando el producto con id ${productId}`);
         }
 
-        return { message: `tarea with id ${id} deleted successfully` };
+        return { message: `Producto con id ${productId} eliminado exitosamente` };
     } catch (error) {
-        console.error('Error deleting tarea:', error);
+        console.error('Error al eliminar el producto:', error);
         throw error;
     }
 }
 
-export default deleteTarea
+
+
+ 
