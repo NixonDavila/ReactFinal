@@ -15,6 +15,7 @@ export default function ModalEditar({ productoEditado, actualizarProducto }) {
   const [isGraduation, setIsGraduation] = useState(false);
   const [isForDad, setIsForDad] = useState(false);
   const [isForMom, setIsForMom] = useState(false);
+  const [destacado, setDestacado] = useState(false); // Nuevo estado para destacar
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -23,13 +24,14 @@ export default function ModalEditar({ productoEditado, actualizarProducto }) {
       setNuevoPrice(productoEditado.price || "");
       setNuevoSize(productoEditado.size || "");
       setNuevaImagen(productoEditado.image || null);
-      setIsChild(productoEditado.isChild || false);
-      setIsGirl(productoEditado.isGirl || false);
-      setIsMan(productoEditado.isMan || false);
-      setIsWoman(productoEditado.isWoman || false);
-      setIsGraduation(productoEditado.isGraduation || false);
-      setIsForDad(productoEditado.isForDad || false);
-      setIsForMom(productoEditado.isForMom || false);
+      setIsChild(productoEditado.tipo?.isChild || false);
+      setIsGirl(productoEditado.tipo?.isGirl || false);
+      setIsMan(productoEditado.tipo?.isMan || false);
+      setIsWoman(productoEditado.tipo?.isWoman || false);
+      setIsGraduation(productoEditado.tipo?.isGraduation || false);
+      setIsForDad(productoEditado.tipo?.isForDad || false);
+      setIsForMom(productoEditado.tipo?.isForMom || false);
+      setDestacado(productoEditado.destacado || false); // Establecer estado destacado
       setShow(true);
     }
   }, [productoEditado]);
@@ -45,13 +47,16 @@ export default function ModalEditar({ productoEditado, actualizarProducto }) {
           price: nuevoPrice,
           size: nuevoSize,
           image: nuevaImagen || productoEditado.image,
-          isChild,
-          isGirl,
-          isMan,
-          isWoman,
-          isGraduation,
-          isForDad,
-          isForMom
+          destacado, // Incluir la propiedad destacado
+          tipo: {
+            isChild,
+            isGirl,
+            isMan,
+            isWoman,
+            isGraduation,
+            isForDad,
+            isForMom,
+          }
         };
 
         await putProducto(productData, productoEditado.id);
@@ -218,6 +223,19 @@ export default function ModalEditar({ productoEditado, actualizarProducto }) {
                   Para Mamá
                 </label>
               </div>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="destacado">
+                <input
+                  type="checkbox"
+                  id="destacado"
+                  name="destacado"
+                  checked={destacado}
+                  onChange={(e) => setDestacado(e.target.checked)}
+                />
+                Destacar Producto
+              </label>
             </div>
 
             <div className="button-group">

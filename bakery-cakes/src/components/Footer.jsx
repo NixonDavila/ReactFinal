@@ -1,5 +1,6 @@
 import React from "react";
 import "../style/footer.css"; // Importa el archivo CSS para el footer
+import Mapa from "./mapa";
 
 function Footer() {
   return (
@@ -9,9 +10,10 @@ function Footer() {
           <h3>Enlaces Útiles</h3>
           <ul>
             <li><a className="af" href="#about">Acerca de</a></li>
-            <li><a className="af" href="#contact">Contacto</a></li>
+            <li><a className="af" href="/contacto">Contacto</a></li>
             <li><a className="af" href="#privacy">Política de Privacidad</a></li>
             <li><a className="af" href="#terms">Términos y Condiciones</a></li>
+            
           </ul>
         </div>
         <div className="footer-section">
@@ -24,6 +26,7 @@ function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
+      <Mapa/>
         <p>&copy; 2024 Mi Aplicación. Todos los derechos reservados.</p>
       </div>
     </footer>

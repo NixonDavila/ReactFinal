@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import '../style/formProducto.css'; // Asegúrate de que la ruta sea correcta
-import postProduct from '../services/postProduct'; // Ajusta la ruta según la ubicación del archivo
-import imageUpload64 from '../controller/base64'; // Asegúrate de que la ruta sea correcta
+import React, { useState } from 'react'; 
+import '../style/formProducto.css';
+import postProduct from '../services/postProduct';
+import imageUpload64 from '../controller/base64';
+import Swal from 'sweetalert2';
 
 const FormularioProducto = () => {
   const [name, setName] = useState("");
@@ -15,17 +16,14 @@ const FormularioProducto = () => {
   const [isGraduation, setIsGraduation] = useState(false);
   const [isForDad, setIsForDad] = useState(false);
   const [isForMom, setIsForMom] = useState(false);
+  const [destacado, setDestacado] = useState(false); // Nuevo estado para destacar
 
   const submitImagen = async (e) => {
     const file = e.target.files[0];
 
     if (file) {
       try {
-        // Convierte la imagen a base64
         const base64Image = await imageUpload64(file);
-        console.log("Imagen en base64:", base64Image);
-
-        // Actualiza el estado de imagen con la cadena base64
         setImage(base64Image);
       } catch (error) {
         console.error("Error al convertir la imagen:", error);
@@ -40,7 +38,8 @@ const FormularioProducto = () => {
       name,
       price,
       size,
-      image, // Incluye la imagen en base64
+      image,
+      destacado, // Incluye la propiedad destacado
       tipo: {
         isChild,
         isGirl,
@@ -53,12 +52,8 @@ const FormularioProducto = () => {
     };
 
     try {
-      // Enviar los datos del producto
       await postProduct(productData);
-
-      alert("El producto se ha agregado exitosamente");
-
-      // Limpiar los campos del formulario
+      Swal.fire("El producto se ha agregado exitosamente!");
       setName("");
       setPrice("");
       setSize("");
@@ -70,9 +65,14 @@ const FormularioProducto = () => {
       setIsGraduation(false);
       setIsForDad(false);
       setIsForMom(false);
+      setDestacado(false); // Reiniciar estado destacado
     } catch (error) {
       console.error("Error al agregar el producto", error);
-      alert("Hubo un problema con el registro del producto");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Hubo un problema con el registro del producto!"
+      });
     }
   };
 
@@ -214,6 +214,18 @@ const FormularioProducto = () => {
 
       <div className="form-group">
         <button type="submit">Agregar Producto</button>
+      </div>
+      <div className="form-group">
+        <label htmlFor="destacado">
+          <input
+            type="checkbox"
+            id="destacado"
+            name="destacado"
+            checked={destacado}
+            onChange={(e) => setDestacado(e.target.checked)}
+          />
+          Destacar Producto
+        </label>
       </div>
     </form>
   );

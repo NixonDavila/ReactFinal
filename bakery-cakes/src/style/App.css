@@ -1,0 +1,87 @@
+.header-container {
+  background-image: url("../img/bakery-cakes-dessert-pastries-linear-pattern-doodle-vintage-food-icons-sweet-elements-background-for-menu-cafe-shop-flat-hand-drawn-vintage-set-free-vector.jpg");
+  display: flex;
+  flex-direction: column; /* Cambiado a columna para móviles */
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #ccc;
+}
+
+.logo h1 {
+  margin: 0;
+  color: #343a40;
+}
+
+.navigation-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap; /* Permite que los enlaces se envuelvan */
+  justify-content: center; /* Centra los enlaces */
+}
+
+.navigation-links li {
+  margin: 10px; /* Espaciado uniforme */
+}
+
+.navigation-links a {
+  text-decoration: none;
+  font-size: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: white;
+ 
+  backdrop-filter: blur(8px);
+  padding: 10px 15px; /* Espaciado interno para botones */
+}
+
+.cake-type-selector {
+  display: flex;
+  align-items: center;
+  margin-top: 15px; /* Espacio superior */
+}
+
+.cake-type-selector label {
+  margin-right: 10px;
+}
+
+#tipoPastel {
+  background-color: burlywood;
+  width: 200px;
+}
+
+#pastel {
+  color: aliceblue;
+}
+
+#logo {
+  width: 150px; /* Ajustado para ser más pequeño en móviles */
+  height: 150px;
+  border-radius: 50%;
+}
+
+/* Estilos responsivos */
+@media (min-width: 600px) {
+  .header-container {
+    flex-direction: row; /* Cambiar a fila para pantallas más grandes */
+    justify-content: space-around; /* Distribuir espacio entre elementos */
+  }
+
+  .navigation-links {
+    margin-left: auto; /* Mover los enlaces a la derecha */
+  }
+}
+
+@media (max-width: 600px) {
+  .navigation-links a {
+    font-size: 18px; /* Tamaño de fuente más pequeño en móviles */
+  }
+
+  #tipoPastel {
+    width: 150px; /* Ancho más pequeño en móviles */
+  }
+}
+
+

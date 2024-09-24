@@ -1,6 +1,6 @@
 body{
-  background-image: url("../img/merenge2.jpg");
-  background-size: cover;
+  background-image: url("../img/registro1.jpg");
+  background-size: auto;
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -28,7 +28,7 @@ body{
 /* Estilo para el formulario */
 .register-form {
   background-color:transparent; 
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(2px);
   border-radius: 8px; /* Bordes redondeados */
   box-shadow: 2 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
   width: 30%;
@@ -39,7 +39,7 @@ body{
 /* Estilo del título del formulario */
 .register-form h2 {
   margin-bottom: 20px; /* Espacio debajo del título */
-  color: white; 
+  color: rgb(255, 156, 172); 
   text-align: center; /* Centrar el título */
 }
 

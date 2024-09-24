@@ -1,41 +1,50 @@
 
 
-/* Contenedor principal del header */
-.header-container {
-    display: flex;
-    justify-content: space-between; /* Espacio entre logo y nav */
-    align-items: center; /* Centra los elementos verticalmente */
-    padding: 20px; /* Espacio alrededor del header */
-    background-color: #007bff; /* Fondo azul */
-    color: white; /* Texto blanco */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+.admin-header {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  text-align: left;
+}
+
+.admin-info {
+  margin-bottom: 15px;
+}
+
+.admin-nav ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.admin-nav li {
+  margin-right: 15px;
+}
+
+.admin-nav a {
+  color: white;
+  text-decoration: none;
+}
+
+.admin-nav a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos responsivos */
+@media (max-width: 600px) {
+  .admin-header {
+    text-align: center;
   }
-  
-  /* Estilo del logo o título */
-  .header-logo h1 {
-    margin: 0; /* Elimina el margen por defecto */
-    font-size: 24px; /* Tamaño de fuente */
+
+  .admin-nav ul {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  /* Estilo de la barra de navegación */
-  .header-nav ul {
-    list-style: none; /* Elimina los puntos de la lista */
-    margin: 0; /* Elimina margen */
-    padding: 0; /* Elimina relleno */
-    display: flex; /* Muestra los elementos en una fila */
-    gap: 20px; /* Espacio entre los elementos */
+
+  .admin-nav li {
+    margin: 10px 0;
   }
-  
-  /* Estilo de los enlaces de navegación */
-  .header-nav a {
-    color: white; /* Texto blanco */
-    text-decoration: none; /* Elimina el subrayado */
-    font-weight: bold; /* Texto en negrita */
-    transition: color 0.3s ease; /* Transición suave para hover */
-  }
-  
-  /* Efecto hover para los enlaces */
-  .header-nav a:hover {
-    color: #ffdd57; /* Cambia a amarillo en hover */
-  }
+}
+
   

@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from '../page/Login';
 import Registro from '../page/Registro';
 import Home from '../page/Home';
-import Contacto from '../page/contacto.jsx'; 
+import Contacto from '../page/contacto copy.jsx';
 import Protec from './protec.jsx';
 import Administrador from '../page/Administrador.jsx';
 import Pruebas from '../page/pruebas.jsx';
+import AcercaDeNosotros from '../components/nosotros.jsx';
 
 
 
@@ -18,9 +19,10 @@ const Routing = () => {
        <Route path="/login" element={<Login />} />
        <Route path="/registro" element={<Registro />} />
        <Route path='/home' element={<Protec><Home /></Protec>} />
-       <Route path='/Contacto' element={<Protec><Contacto/></Protec>} />
-       <Route path='/administrador' element={<Administrador/>} />
-       <Route path="/pruebas" element={<Pruebas/>} />
+       <Route path='/Contacto' element={<Contacto/>} />
+       <Route path='/administrador' element={<Protec><Administrador/></Protec>} />
+       <Route path="/pruebas" element={<Protec> <Pruebas/></Protec>} />
+       <Route path="/nosotros" element={<Protec> <AcercaDeNosotros/></Protec>} />
      </Routes>
     </Router>
    );

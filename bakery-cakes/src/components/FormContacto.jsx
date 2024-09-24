@@ -1,7 +1,33 @@
-import React from "react";
-// import "../styles/contacto.css"; // Importa el archivo CSS para el formulario de contacto
+// import React from "react";
+import "../style/contacto.css"// Importa el archivo CSS para el formulario de contacto
+// import Email from "./email";
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
+
 
 function ContactForm() {
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm('service_6365jdo', 'template_y1da1fr', form.current, {
+        publicKey: 'vQRSOmVSKnrmyCeOG',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        },
+      );
+  };
+
+
+
   return (
     <div className="contact-us-container">
     <h1>Contáctanos</h1>
@@ -10,39 +36,30 @@ function ContactForm() {
     {/* Información de contacto */}
     <div className="contact-info">
       <div className="contact-info-item">
-        <h3>Dirección</h3>
-        <p>Calle Falsa 123, Ciudad, País</p>
+        <h3>Teléfono</h3>
+        <p>+506 63235727 </p>
       </div>
       <div className="contact-info-item">
-        <h3>Teléfono</h3>
-        <p>+1 (234) 567-890</p>
+        <h3>WhatsApp</h3>
+        <p>+506  62064042</p>
       </div>
       <div className="contact-info-item">
         <h3>Correo Electrónico</h3>
-        <p>info@example.com</p>
+        <p>balettisalgomez@gmail.com</p>
       </div>
     </div>
 
     {/* Formulario de contacto */}
-    <form className="contact-form">
-      <div className="form-group">
-        <label htmlFor="name">Nombre</label>
-        <input type="text" id="name" placeholder="Ingresa tu nombre" required />
-      </div>
-      <div className="form-group">
-        <label htmlFor="email">Correo Electrónico</label>
-        <input type="email" id="email" placeholder="Ingresa tu correo electrónico" required />
-      </div>
-      <div className="form-group">
-        <label htmlFor="subject">Asunto</label>
-        <input type="text" id="subject" placeholder="Ingresa el asunto" required />
-      </div>
-      <div className="form-group">
-        <label htmlFor="message">Mensaje</label>
-        <textarea id="message" placeholder="Escribe tu mensaje" rows="4" required></textarea>
-      </div>
-      <button type="submit" className="btn-submit">Enviar</button>
+    <form ref={form} onSubmit={sendEmail}>
+      <label>Name</label>
+      <input type="text" name="user_name" />
+      <label>Email</label>
+      <input type="email" name="user_email" />
+      <label>Message</label>
+      <textarea name="message" />
+      <input type="submit" value="Send" />
     </form>
+   
 
     {/* Enlaces a redes sociales */}
     <div className="social-media">

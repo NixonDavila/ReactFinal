@@ -1,33 +1,59 @@
 import React, { useState } from "react";
 import getUsers from "../services/get";
 import { useNavigate } from "react-router-dom";
-import "../style/login.css"
-
+import "../style/login.css";
+import Swal from 'sweetalert2';
 
 function FormLogin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
   const navigate = useNavigate(); // Hook para la navegación
 
   // Función para manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault(); // Previene el comportamiento por defecto del formulario
 
-    const users = await getUsers();
+    try {
 
-    const user = users.find((user) => user.username === username);
-
-    if (user) {
-      if (user.password === password) {
-        localStorage.setItem('Autentificado', 'true')
-        navigate("/home"); // Redirigir al usuario a la página de Home
-        
-      } else {
-        alert("Contraseña incorrecta");
+      if (username === 'PATRONCITA' && password === 'c1n1dybal3') {
+        localStorage.setItem('Autentificado', 'true');
+        Swal.fire("La patrona a llegado !").then(() => {
+          navigate('/administrador'); // Redirigir al usuario a la página de administrador
+        });
+       return
       }
-    } else {
-      alert("Usuario incorrecto");
+
+
+      const users = await getUsers();
+      const user = users.find((user) => user.username === username);
+
+      if (user) {
+        if (user.password === password) {
+          localStorage.setItem('Autentificado', 'true');
+          Swal.fire("Inicio de sesión exitoso!").then(() => {
+            navigate("/home"); // Redirigir al usuario a la página de Home
+          });
+        } else {        
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Contraseña incorrecta!",         
+          });
+        }
+      } else {      
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Usuario incorrecto!",         
+        });
+      }
+    } catch (error) {
+      console.error("Error al obtener usuarios:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Hubo un problema al iniciar sesión. Inténtalo de nuevo.",
+      });
     }
   };
 
@@ -65,8 +91,8 @@ function FormLogin() {
         <button type="submit" className="btn-login">
           Ingresar
         </button>
-         {/* Botón estilizado como enlace */}
-         <button type="button" onClick={goToRegister} className="btn-link">
+        {/* Botón estilizado como enlace */}
+        <button type="button" onClick={goToRegister} className="btn-link">
           ¿No tienes una cuenta? Regístrate aquí
         </button>
       </form>
@@ -75,3 +101,4 @@ function FormLogin() {
 }
 
 export default FormLogin;
+

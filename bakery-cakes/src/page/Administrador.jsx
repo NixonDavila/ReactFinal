@@ -1,13 +1,17 @@
 import React from 'react'
-import Header from '../components/Header'
+
 import BasicExample from '../components/navbar'
 import Footer from '../components/Footer'
 import FormularioProducto from '../components/FormularioProducto'
+import HeaderP from '../components/headerPrueba'
+import Header from '../components/headerAdmi'
+import "../style/admin.css"
 
 export default function Administrador() {
   return (
-    <div>
-         <Header/>
+    <div className='fondo3'>
+        <Header/>
+         {/* <HeaderP/> */}
          <BasicExample/>
          <FormularioProducto/>
          <Footer/>

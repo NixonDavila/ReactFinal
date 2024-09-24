@@ -1,12 +1,17 @@
 import React from 'react'
-import Tarjeta from '../components/cards'
+import "../style/admin.css"
 import TarjetaAdmin from '../components/cardsAdmin'
+import Destacado from '../components/destacado'
+
+import Header from '../components/headerAdmi'
 
 export default function Pruebas() {
   return (
-    <div>
-     
+    <div className='fondo3'>
+      <Header/>
       <TarjetaAdmin/>
+      <Destacado/>
+     
 
     </div>
   )

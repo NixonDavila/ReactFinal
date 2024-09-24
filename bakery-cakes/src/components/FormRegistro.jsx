@@ -1,54 +1,82 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import postUser from "../services/post";
 import "../style/registro.css";
 import { useNavigate } from "react-router-dom";
 import getUsers from "../services/get";
+import Swal from 'sweetalert2';
 
 function FormRegister() {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [users, setUsers] = useState([]);
   const navigate = useNavigate(); // Hook para navegar programáticamente
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const fetchedUsers = await getUsers();
+      setUsers(fetchedUsers);
+    };
+    fetchUsers();
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const registrar = async (e) => {
     e.preventDefault(); // Previene el comportamiento por defecto del formulario
-     
-    const users = await getUsers();
+    
+    const { username, email, password, confirmPassword } = formData;
 
-    const user = users.some((user) => user.username === username);
-
-    if (user) {
-     alert("nombre no disponible")
-    }else{
-      alert("")
+    if (users.some(user => user.username === username)) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Nombre de usuario no disponible!",
+      });
     }
-   
+
+    if (users.some(user => user.email === email)) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Correo no disponible!",
+      });
+    }
+
     // Validar si las contraseñas coinciden
     if (password !== confirmPassword) {
-      alert("Las contraseñas no coinciden, por favor revisa");
-      return;
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Las contraseñas no coinciden, por favor revisa!",
+      });
     }
 
     try {
       // Intentar enviar los datos del usuario
       await postUser(username, email, password);
-      alert("El usuario se ha registrado exitosamente");
-      navigate("/login"); // Redirigir a la página de login después del registro exitoso
+      Swal.fire("El usuario se ha registrado exitosamente!").then(() => {
+        navigate("/login"); // Redirigir a la página de login después del registro exitoso
+      });
 
       // Limpiar los campos del formulario
-      setUsername("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
+      setFormData({ username: "", email: "", password: "", confirmPassword: "" });
     } catch (error) {
-      console.error("Error al registrar el usuario", error);
-      alert("Hubo un problema con el registro");
+      console.error("Error al registrar el usuario:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Hubo un problema con el registro!",
+      });
     }
   };
 
-  // Función para redirigir a la página de login
   const goToLogin = () => {
     navigate("/login"); // Navegar a la página de Login
   };
@@ -56,14 +84,15 @@ function FormRegister() {
   return (
     <div className="register-container">
       <form className="register-form" onSubmit={registrar}>
-        <h2 className="colorLetra">Registro</h2>
+        <h2 className="colorLetra">𝑅𝑒𝑔𝒾𝓈𝓉𝓇𝑜</h2>
         <div className="form-group">
           <label htmlFor="username">Usuario</label>
           <input
             type="text"
             id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
             placeholder="Ingresa tu usuario"
             required
           />
@@ -73,8 +102,9 @@ function FormRegister() {
           <input
             type="email"
             id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
             placeholder="Ingresa tu correo electrónico"
             required
           />
@@ -84,8 +114,9 @@ function FormRegister() {
           <input
             type="password"
             id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
             placeholder="Ingresa tu contraseña"
             required
           />
@@ -95,8 +126,9 @@ function FormRegister() {
           <input
             type="password"
             id="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
             placeholder="Confirma tu contraseña"
             required
           />
@@ -104,17 +136,17 @@ function FormRegister() {
         <button type="submit" className="btn-register">
           Registrarse
         </button>
-     
       </form>
-        {/* Botón de Login */}
-        <button onClick={goToLogin} className="btn-logi">
-                ¿Ya tienes una cuenta? Inicia sesión
-              </button>
+      {/* Botón de Login */}
+      <button onClick={goToLogin} className="btn-logi">
+        ¿Ya tienes una cuenta? Inicia sesión
+      </button>
     </div>
   );
 }
 
 export default FormRegister;
+
 
 
 

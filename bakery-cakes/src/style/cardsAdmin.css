@@ -1,0 +1,45 @@
+.cardsAd{
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 5%;
+    margin-bottom: 2rem;
+   
+ } 
+
+
+
+
+.contenedorAd {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 5%;
+    margin-bottom: 2rem;
+ }
+ 
+ .card-admin {
+     width: 18rem;
+     height: 30rem;
+     overflow: auto;
+     transition: transform 0.3s; /* Agrega una transición suave al hover */
+ }
+ 
+ .card-admin:hover {
+     transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+ }
+ 
+ .card-admin img {
+     height: 12rem;
+     object-fit: cover;
+     transition: height 0.3s; /* Transición suave */
+ }
+ 
+ .card-admin img:hover {
+     height: 20rem;
+     object-fit: cover;
+     overflow: visible;
+ }
