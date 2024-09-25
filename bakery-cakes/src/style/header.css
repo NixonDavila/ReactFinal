@@ -1,10 +1,21 @@
-
+#logo2 {
+  width: 250px; /* Ajustado para ser más pequeño en móviles */
+  height: 250px;
+  border-radius: 50%;
+  margin-left: 50%;
+}
 
 .admin-header {
   background-color: #333;
   color: white;
   padding: 20px;
   text-align: left;
+
+}
+
+.contenedorNav{
+  display: grid;
+  grid-template-columns: auto auto;
 }
 
 .admin-info {
@@ -35,6 +46,7 @@
 @media (max-width: 600px) {
   .admin-header {
     text-align: center;
+    justify-content: center;
   }
 
   .admin-nav ul {
@@ -44,6 +56,24 @@
 
   .admin-nav li {
     margin: 10px 0;
+  }
+
+  .contenedorNav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #img_container{
+    display: flex;
+    width: 80%;
+  }
+
+  #img_container img{
+    width: 150px; /* Ajustado para ser más pequeño en móviles */
+    height: 150px;
+    border-radius: 50%; 
+    margin-left: 135px;
   }
 }
 

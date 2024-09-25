@@ -1,6 +1,6 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -16,26 +16,25 @@ function TarjetaAdmin() {
   const [productoEditado, setProductoEditado] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const products = await getProducts();
-        setProductos(products);
-      } catch (error) {
-        console.error('Error al obtener productos:', error);
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "No se pudieron cargar los productos.",
-        });
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProducts();
-  }, []);
+  const fetchProducts = async () => {
+    try {
+      const products = await getProducts();
+      setProductos(products);
+    } catch (error) {
+      console.error('Error al obtener productos:', error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "No se pudieron cargar los productos.",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  const eliminarP = async (productId) => {
+  useEffect(() => {fetchProducts()}, [fetchProducts]);
+
+  const eliminarP = (async (productId) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success",
@@ -57,7 +56,7 @@ function TarjetaAdmin() {
     if (result.isConfirmed) {
       try {
         await deleteProduct(productId);
-        setProductos(productos.filter(producto => producto.id !== productId));
+        setProductos(prevProductos => prevProductos.filter(producto => producto.id !== productId));
         swalWithBootstrapButtons.fire({
           title: "¡Eliminado!",
           text: "Tu archivo ha sido eliminado.",
@@ -78,16 +77,18 @@ function TarjetaAdmin() {
         icon: "error"
       });
     }
-  };
-  
-  const editarProducto = (producto) => {
-    setProductoEditado(producto);
-  };
+  }, []);
 
-  const actualizarProducto = async (productoActualizado) => {
+  const editarProducto = ((producto) => {
+    setProductoEditado(producto);
+  });
+
+  const actualizarProducto = (async (productoActualizado) => {
     try {
-      const updatedProducts = productos.map(p => p.id === productoActualizado.id ? productoActualizado : p);
-      setProductos(updatedProducts);
+      setProductos(prevProductos =>
+        prevProductos.map(p => p.id === productoActualizado.id ? productoActualizado : p)
+      );
+      
       setProductoEditado(null);
     } catch (error) {
       console.error("Error al actualizar el producto:", error);
@@ -97,14 +98,14 @@ function TarjetaAdmin() {
         text: "No se pudo actualizar el producto.",
       });
     }
-  };
+  });
 
   if (loading) {
     return <div>Cargando productos...</div>;
   }
 
   return (
-    <div  className='cardsAd'>
+    <div className='cardsAd'>
       <h1>Productos</h1>
       <Container className='contenedorAd' fluid="md">
         <Row>
@@ -153,6 +154,7 @@ function TarjetaAdmin() {
 }
 
 export default TarjetaAdmin;
+
 
 
 

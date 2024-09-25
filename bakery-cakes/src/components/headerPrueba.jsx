@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'; // Importa Link
 import "../style/App.css";
 import imagen from '/src/img/+506 6206 4042 20240627_211905 - Cindy baletti (1).jpg';
 
-const HeaderP = ({ setTipoPastel }) => {
+const HeaderP = ({ setTipoPastel }) => { //va a page Home
   const navigate = useNavigate();
 
   function cerrarSesion() {

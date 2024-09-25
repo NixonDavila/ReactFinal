@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 
 const Protec = ({ children }) => { // 'children' con c minúscula
 
-  const estaAutentificado = localStorage.getItem("Autentificado") === "true";
+  const estaAutentificado = localStorage.getItem("Autentificado") === "true" ? localStorage.getItem("Autentificado") === "true" : localStorage.getItem("Administrador") === "true"
 
   if (!estaAutentificado) {
     return <Navigate to={"/"} />; // Redirigir a la página de login si no está autenticado

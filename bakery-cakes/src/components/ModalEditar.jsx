@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import putProducto from '../services/put';
 import imageUpload64 from '../controller/base64';
@@ -15,7 +15,7 @@ export default function ModalEditar({ productoEditado, actualizarProducto }) {
   const [isGraduation, setIsGraduation] = useState(false);
   const [isForDad, setIsForDad] = useState(false);
   const [isForMom, setIsForMom] = useState(false);
-  const [destacado, setDestacado] = useState(false); // Nuevo estado para destacar
+  const [destacado, setDestacado] = useState(false);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -31,14 +31,14 @@ export default function ModalEditar({ productoEditado, actualizarProducto }) {
       setIsGraduation(productoEditado.tipo?.isGraduation || false);
       setIsForDad(productoEditado.tipo?.isForDad || false);
       setIsForMom(productoEditado.tipo?.isForMom || false);
-      setDestacado(productoEditado.destacado || false); // Establecer estado destacado
+      setDestacado(productoEditado.destacado || false);
       setShow(true);
     }
   }, [productoEditado]);
 
-  const handleClose = () => setShow(false);
+  const handleClose = useCallback(() => setShow(false), []);
 
-  const actualizarProductos = async (e) => {
+  const actualizarProductos = useCallback(async (e) => {
     e.preventDefault();
     if (productoEditado && nuevoNombre.trim() !== "") {
       try {
@@ -47,7 +47,7 @@ export default function ModalEditar({ productoEditado, actualizarProducto }) {
           price: nuevoPrice,
           size: nuevoSize,
           image: nuevaImagen || productoEditado.image,
-          destacado, // Incluir la propiedad destacado
+          destacado,
           tipo: {
             isChild,
             isGirl,
@@ -67,14 +67,14 @@ export default function ModalEditar({ productoEditado, actualizarProducto }) {
         alert("Hubo un problema al actualizar el producto");
       }
     }
-  };
+  }, [productoEditado, nuevoNombre, nuevoPrice, nuevoSize, nuevaImagen, destacado, isChild, isGirl, isMan, isWoman, isGraduation, isForDad, isForMom, actualizarProducto]);
 
-  const cancelarEdicion = () => {
+  const cancelarEdicion = useCallback(() => {
     actualizarProducto(null);
     setShow(false);
-  };
+  }, [actualizarProducto]);
 
-  const submitImagen = async (e) => {
+  const submitImagen = useCallback(async (e) => {
     const file = e.target.files[0];
     if (file) {
       try {
@@ -84,7 +84,7 @@ export default function ModalEditar({ productoEditado, actualizarProducto }) {
         console.error("Error al convertir la imagen:", error);
       }
     }
-  };
+  }, []);
 
   return (
     <Modal show={show} onHide={handleClose}>
@@ -112,7 +112,7 @@ export default function ModalEditar({ productoEditado, actualizarProducto }) {
               <label htmlFor="product-price">
                 Precio:
                 <input
-                  type="number"
+                  type="text"
                   id="product-price"
                   value={nuevoPrice}
                   onChange={(e) => setNuevoPrice(e.target.value)}
@@ -253,6 +253,7 @@ export default function ModalEditar({ productoEditado, actualizarProducto }) {
     </Modal>
   );
 }
+
 
 
 

@@ -6,8 +6,9 @@ import Home from '../page/Home';
 import Contacto from '../page/contacto copy.jsx';
 import Protec from './protec.jsx';
 import Administrador from '../page/Administrador.jsx';
-import Pruebas from '../page/pruebas.jsx';
+import Pruebas from '../page/verProductos.jsx';
 import AcercaDeNosotros from '../components/nosotros.jsx';
+import RegistroEmpleados from '../page/RegistroEmpleados.jsx';
 
 
 
@@ -23,6 +24,8 @@ const Routing = () => {
        <Route path='/administrador' element={<Protec><Administrador/></Protec>} />
        <Route path="/pruebas" element={<Protec> <Pruebas/></Protec>} />
        <Route path="/nosotros" element={<Protec> <AcercaDeNosotros/></Protec>} />
+       <Route path='/registro-empleados' element={<Protec>  <RegistroEmpleados/></Protec>} />
+      
      </Routes>
     </Router>
    );

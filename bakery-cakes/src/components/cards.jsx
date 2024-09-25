@@ -3,16 +3,25 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import getProducts from '../services/getProducts';
 import '../style/cards.css';
 
-function Tarjeta({ tipoPastel }) {
+function Tarjeta({ tipoPastel }) { //VA A PAGE HOME
   const [productos, setProductos] = useState([]);
 
-  useEffect(() => {
-    const fetchProductos = async () => {
+  const fetchProducts = async () => {
+    try {
       const products = await getProducts();
       setProductos(products);
-    };
-    fetchProductos();
-  }, []);
+
+    } catch (error) {
+      console.error('Error al obtener productos:', error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "No se pudieron cargar los productos.",
+      });
+    }
+  };
+
+  useEffect(() => {fetchProducts()}, [fetchProducts]);
 
   // Filtrar productos usado el value de la option del select 
   const filteredProductos = tipoPastel ? productos.filter(producto => {
@@ -60,7 +69,7 @@ function Tarjeta({ tipoPastel }) {
                       {producto.tipo.isForDad && <li>Para Papá</li>}
                       {producto.tipo.isForMom && <li>Para Mamá</li>}
                     </ul>
-                    <Button variant="primary">Ir</Button>
+                    <Button  variant="primary" >contactnos</Button>
                   </div>
                 </Card.Body>
               </Card>

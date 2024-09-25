@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import getUsers from "../services/get";
 import { useNavigate } from "react-router-dom";
-import "../style/login.css";
 import Swal from 'sweetalert2';
+import "../style/login.css"
+import getUsers from "../services/get"; // Servicio para obtener usuarios
+import getEmpleados from "../services/getEmpleados"; // Servicio para obtener empleados
 
 function FormLogin() {
   const [username, setUsername] = useState("");
@@ -14,41 +15,61 @@ function FormLogin() {
     e.preventDefault(); // Previene el comportamiento por defecto del formulario
 
     try {
-
+      // Verificación especial para la "patroncita"
       if (username === 'PATRONCITA' && password === 'c1n1dybal3') {
-        localStorage.setItem('Autentificado', 'true');
-        Swal.fire("La patrona a llegado !").then(() => {
+        localStorage.setItem('Administrador', 'true');
+        Swal.fire("La patrona ha llegado!").then(() => {
           navigate('/administrador'); // Redirigir al usuario a la página de administrador
         });
-       return
+        return;
       }
 
-
+      // Obtener usuarios y empleados
       const users = await getUsers();
+      const empleados = await getEmpleados();
+      
+      // Verificar si es un usuario
       const user = users.find((user) => user.username === username);
-
       if (user) {
         if (user.password === password) {
           localStorage.setItem('Autentificado', 'true');
           Swal.fire("Inicio de sesión exitoso!").then(() => {
             navigate("/home"); // Redirigir al usuario a la página de Home
           });
-        } else {        
+        } else {
           Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Contraseña incorrecta!",         
+            text: "Contraseña incorrecta!",
           });
         }
-      } else {      
+        return;
+      }
+
+      // Verificar si es un empleado
+      const empleado = empleados.find((empleado) => empleado.email === username);
+      if (empleado) {
+        if (empleado.contraseña === password) {
+          localStorage.setItem('Administrador', 'true');
+          Swal.fire("Inicio de sesión exitoso!").then(() => {
+            navigate("/administrador"); // Redirigir al usuario a la página de Home
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Contraseña incorrecta!",
+          });
+        }
+      } else {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Usuario incorrecto!",         
+          text: "Usuario incorrecto!",
         });
       }
     } catch (error) {
-      console.error("Error al obtener usuarios:", error);
+      console.error("Error al obtener usuarios o empleados:", error);
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -67,13 +88,13 @@ function FormLogin() {
       <form className="login-form" onSubmit={handleSubmit}>
         <h2>Iniciar Sesión</h2>
         <div className="form-group">
-          <label htmlFor="username">Usuario</label>
+          <label htmlFor="username">Usuario/Email</label>
           <input
             type="text"
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Ingresa tu usuario"
+            placeholder="Ingresa tu usuario o email"
             required
           />
         </div>
@@ -101,4 +122,5 @@ function FormLogin() {
 }
 
 export default FormLogin;
+
 
